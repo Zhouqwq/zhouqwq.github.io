@@ -8,14 +8,7 @@
 	<head>
 		<title>六2班の私藏网页</title>
 
-		<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-		<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-		<style>
-		#gitalk-container {
-			max-width: 600px;
-			margin: 0 auto;
-		}
-		</style>
+		<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -246,20 +239,13 @@
 						</section>
 						-->
 						
-						<div id="gitalk-container"></div>
+						<div id="vcomments"></div>
 						<script>
-						var gitalk = new Gitalk({
-							clientID: '21714a47e208bb8079ab', //clientID 
-							clientSecret: '832e6845efa4a4fdbdbd9b686c2940bbd3a0bae8', //clientSecret
-							repo: 'comments', // 评论仓库名
-							owner: 'zhouqwq',
-							admin: ['zhouqwq'], //管理人
-							id: location.pathname, // 返回当前 URL 的路径部分作为id
-							language:'zh-CN', //语言
-							proxy: 'https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token',
-							distractionFreeMode: false  // 无干扰模式
-						})
-						gitalk.render('gitalk-container')
+							new Valine({
+								el: '#vcomments',
+								appId: 'ByfNmhoIUmFaqsgUh13abRBB-gzGzoHsz',
+								appKey: '0eSMfK6sxUm2DltL2Hah4jkg'
+							})
 						</script>
 
 						
