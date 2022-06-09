@@ -2920,7 +2920,7 @@ input, select, textarea {
 		}
 
 		header > p {
-			font-style: italic;
+			
 		}
 
 		header > h1 + p {
@@ -2954,6 +2954,7 @@ input, select, textarea {
 			}
 
 			header.major > p {
+				font-size: 150%;
 				margin-top: 0;
 				text-align: center;
 			}
