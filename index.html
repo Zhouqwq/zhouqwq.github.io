@@ -250,12 +250,13 @@
 						<script>
 						var gitalk = new Gitalk({
 							clientID: '21714a47e208bb8079ab', //clientID 
-							clientSecret: '65c009c2b97b995cae7e54b7a570b568dd17e2c6', //clientSecret
+							clientSecret: '832e6845efa4a4fdbdbd9b686c2940bbd3a0bae8', //clientSecret
 							repo: 'comments', // 评论仓库名
 							owner: 'zhouqwq',
 							admin: ['zhouqwq'], //管理人
 							id: location.pathname, // 返回当前 URL 的路径部分作为id
 							language:'zh-CN', //语言
+							proxy: 'https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token',
 							distractionFreeMode: false  // 无干扰模式
 						})
 						gitalk.render('gitalk-container')
