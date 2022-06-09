@@ -148,7 +148,8 @@ input, select, textarea {
 	}
 
 	body, input, select, textarea {
-		font-family: "Merriweather", Georgia, serif;
+		/*font-family: "Merriweather", Georgia, serif;*/
+		font-family:"Microsoft YaHei",微软雅黑;
 		font-weight: 300;
 		font-size: 1rem;
 		line-height: 2.375;
@@ -2407,7 +2408,8 @@ input, select, textarea {
 			display: inline-block;
 			font-size: 1rem;
 			letter-spacing: 0;
-			font-family: "Merriweather", Georgia, serif;
+			/*font-family: "Merriweather", Georgia, serif;*/
+			font-family:"Microsoft YaHei",微软雅黑;
 			text-transform: none;
 			font-weight: 300;
 			padding-left: 2.8rem;
@@ -2920,7 +2922,7 @@ input, select, textarea {
 		}
 
 		header > p {
-			
+			font-size: 100%;
 		}
 
 		header > h1 + p {
@@ -2954,7 +2956,7 @@ input, select, textarea {
 			}
 
 			header.major > p {
-				font-size: 150%;
+				font-size: 125%;
 				margin-top: 0;
 				text-align: center;
 			}
