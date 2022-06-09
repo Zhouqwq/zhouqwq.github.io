@@ -7,6 +7,16 @@
 <html>
 	<head>
 		<title>六2班の私藏网页</title>
+
+		<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+		<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+		<style>
+		#gitalk-container {
+			max-width: 600px;
+			margin: 0 auto;
+		}
+		</style>
+
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -197,12 +207,12 @@
 								<div class="pagination">
 									<!--<a href="#" class="previous">Prev</a>-->
 									<<a href="#" class="page active">1</a>
-									<!--<a href="#" class="page">2</a>
+									<a href="#" class="page">2</a>
 									<a href="#" class="page">3</a>
 									<span class="extra">&hellip;</span>
 									<a href="#" class="page">8</a>
 									<a href="#" class="page">9</a>
-									<a href="#" class="page">10</a>-->
+									<a href="#" class="page">10</a>
 									<a href="#" class="next">The End</a>
 								</div>
 							</footer>
@@ -211,6 +221,8 @@
 
 				<!-- Footer -->
 					<footer id="footer">
+					
+					<!--
 						<section>
 							<form method="post" action="#">
 								<div class="fields">
@@ -232,6 +244,24 @@
 								</ul>
 							</form>
 						</section>
+						-->
+						
+						<div id="gitalk-container"></div>
+						<script>
+						var gitalk = new Gitalk({
+							clientID: '21714a47e208bb8079ab', //clientID 
+							clientSecret: '65c009c2b97b995cae7e54b7a570b568dd17e2c6', //clientSecret
+							repo: 'comments', // 评论仓库名
+							owner: 'zhouqwq',
+							admin: ['zhouqwq'], //管理人
+							id: location.pathname, // 返回当前 URL 的路径部分作为id
+							language:'zh-CN', //语言
+							distractionFreeMode: false  // 无干扰模式
+						})
+						gitalk.render('gitalk-container')
+						</script>
+
+						
 						<section class="split contact">
 							<section class="alt">
 								<h3>地址</h3>
