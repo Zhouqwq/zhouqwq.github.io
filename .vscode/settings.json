@@ -1,0 +1,39 @@
+{
+    "editor.fontFamily": "Cascadia Code, Microsoft Yahei UI Regular, monospace",
+    "editor.fontLigatures": "'calt','ss01'",
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                "scope": [
+                    "keyword.operator",
+                    "keyword.operator.arithmetic",
+                    "keyword.operator.assignment",
+                    "keyword.operator.logical",
+                    "keyword.operator.new",
+                ],
+                "settings": {
+                    "fontStyle": ""
+                }
+            },
+            {
+                "scope": [
+                    "comment",
+                    "comment.block",
+                    "comment.block.documentation",
+                    "comment.line",
+                    "entity.name.class",
+                    "storage",
+                    "keyword.control",
+                    "keyword.other",
+                    "variable.parameter",
+                    "entity.name.tag"
+                ],
+                "settings": {
+                    "fontStyle": "italic"
+                }
+            }
+        ]
+    },
+    "notebook.output.fontFamily": "Cascadia Code, Microsoft Yahei UI Regular, monospace",
+    "terminal.integrated.fontFamily": "Cascadia Code, Microsoft Yahei UI Regular, monospace"
+}

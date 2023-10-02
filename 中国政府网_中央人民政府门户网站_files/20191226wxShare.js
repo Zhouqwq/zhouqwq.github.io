@@ -1,35 +1,43 @@
 /**
- * @St. 2018-07-01 
- * 修复微信二次分享不生效的bug 
+ * @St. 2018-07-01
+ * 修复微信二次分享不生效的bug
  * src: http://www.xinhuanet.com/global/public/wxShare.js
  * bk: http://www.xinhuanet.com/global/public/wxShare.bk.js
  */
 var wxShareHref = window.location.href;
 
-if (/\?from=/ig.test(wxShareHref)) {
-    var noJump = /nojump/ig.test(wxShareHref);
+if (/\?from=/gi.test(wxShareHref)) {
+    var noJump = /nojump/gi.test(wxShareHref);
     if (noJump == false) {
-        window.location.href = wxShareHref.split('?from=')[0];
+        window.location.href = wxShareHref.split("?from=")[0];
     }
 }
 
 var json_wx = {
-    'jsonpurl': (function (callback) {
+    jsonpurl: (function (callback) {
         //http://api.home.news.cn/wx/jsapi.do?callback=sdfsdf&mpId=367&url=http%3A%2F%2Fapp.news.cn%2Fweixintest%2F;
         var str,
             //  loc = wxShareHref;
             //str = "http://api.home.news.cn/wx/jsapi.do?callback=" + "cb" + "&mpId=367&url=" + loc;
 
-            loc = wxShareHref.substring(0, wxShareHref.indexOf('#') < 0 ? undefined : wxShareHref.indexOf('#'));
+            loc = wxShareHref.substring(
+                0,
+                wxShareHref.indexOf("#") < 0
+                    ? undefined
+                    : wxShareHref.indexOf("#")
+            );
         //str = "http://api.home.news.cn/wx/jsapi.do?callback=" + "cb" + "&mpId=368&url=" + loc + '&t=' + new Date().getTime();
-        str = "https://api.home.news.cn/wx/jsapi.do?callback=cb" + "&mpId=376&url=" + encodeURIComponent(loc);
+        str =
+            "https://api.home.news.cn/wx/jsapi.do?callback=cb" +
+            "&mpId=376&url=" +
+            encodeURIComponent(loc);
         return str;
     })(),
-    'createTag': function (url) {
+    createTag: function (url) {
         var tag = document.createElement("script");
         tag.src = url;
         document.querySelector("body").appendChild(tag);
-    }
+    },
 };
 
 function cb(data) {
@@ -41,7 +49,14 @@ function cb(data) {
         timestamp: data.content.timestamp, // 必填，生成签名的时间戳
         nonceStr: data.content.nonceStr, // 必填，生成签名的随机串
         signature: data.content.signature, // 必填，签名，见附录1
-        jsApiList: ['checkJsApi', 'onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'onMenuShareQZone'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+        jsApiList: [
+            "checkJsApi",
+            "onMenuShareTimeline",
+            "onMenuShareAppMessage",
+            "onMenuShareQQ",
+            "onMenuShareWeibo",
+            "onMenuShareQZone",
+        ], // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
 
         /*
          * 注意：
@@ -54,29 +69,27 @@ function cb(data) {
          * 邮件主题：【微信JS-SDK反馈】具体问题
          * 邮件内容说明：用简明的语言描述问题所在，并交代清楚遇到该问题的场景，可附上截屏图片，微信团队会尽快处理你的反馈。
          */
-
     });
     wx.ready(function () {
-
         // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
         // 1 判断当前版本是否支持指定 JS 接口，支持批量判断
         wx.checkJsApi({
-            jsApiList: [
-                'getNetworkType',
-                'previewImage'
-            ],
+            jsApiList: ["getNetworkType", "previewImage"],
             success: function (res) {
                 //alert(JSON.stringify(res));
-            }
+            },
         });
 
         var shareTit = document.querySelector(".share-title").innerHTML.trim();
-		shareTit = shareTit.replace('<br>', '');
-		shareTit = shareTit.replace('&nbsp;', '');
+        shareTit = shareTit.replace("<br>", "");
+        shareTit = shareTit.replace("&nbsp;", "");
         var sharesum = document.querySelector(".share-substr").innerHTML.trim();
         //var shareImg = document.querySelector(".share-img").getElementsByTagName("img")[0].src||document.querySelector(".share-img").src;
-        var shareImg = document.querySelector(".share-img").nodeName.toLowerCase() === "div" ? document.querySelector(".share-img").querySelector("img").src : document.querySelector(".share-img").src
-
+        var shareImg =
+            document.querySelector(".share-img").nodeName.toLowerCase() ===
+            "div"
+                ? document.querySelector(".share-img").querySelector("img").src
+                : document.querySelector(".share-img").src;
 
         var shareUrl = wxShareHref;
         //alert("图片"+shareImg)
@@ -102,7 +115,7 @@ function cb(data) {
             },
             fail: function (res) {
                 //alert(JSON.stringify(res));
-            }
+            },
         });
 
         // 2.2 监听“分享到朋友圈”按钮点击、自定义分享内容及分享结果接口
@@ -122,7 +135,7 @@ function cb(data) {
             },
             fail: function (res) {
                 //alert(JSON.stringify(res));
-            }
+            },
         });
 
         // 2.3 监听“分享到QQ”按钮点击、自定义分享内容及分享结果接口
@@ -145,7 +158,7 @@ function cb(data) {
             },
             fail: function (res) {
                 //alert(JSON.stringify(res));
-            }
+            },
         });
 
         // 2.4 监听“分享到微博”按钮点击、自定义分享内容及分享结果接口
@@ -168,7 +181,7 @@ function cb(data) {
             },
             fail: function (res) {
                 //alert(JSON.stringify(res));
-            }
+            },
         });
 
         // 2.5 监听“分享到QZone”按钮点击、自定义分享内容及分享接口
@@ -191,14 +204,13 @@ function cb(data) {
             },
             fail: function (res) {
                 //alert(JSON.stringify(res));
-            }
+            },
         });
     });
     wx.error(function (res) {
         // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
         /*console.log(res,error);*/
     });
-
 }
 
 /*
@@ -209,9 +221,16 @@ function cb(data) {
 //---仅移动端时启动微信分享
 (function (isM) {
     var _mob = isM || false;
-    _mob ? (json_wx.createTag(json_wx.jsonpurl)) : null;
-})((function (w) {
-    var ua = w.navigator.userAgent.toLowerCase(),
-        isMatchMob = /phone|pad|pod|iphone|ipod|ios|ipad|android|mobile|blackberry|iemobile|mqqbrowser|juc|fennec|wosbrowser|browserng|webos|symbian|windows phone|micromessenger/gi.test(ua) ? true : false;;
-    return isMatchMob;
-})(window));
+    _mob ? json_wx.createTag(json_wx.jsonpurl) : null;
+})(
+    (function (w) {
+        var ua = w.navigator.userAgent.toLowerCase(),
+            isMatchMob =
+                /phone|pad|pod|iphone|ipod|ios|ipad|android|mobile|blackberry|iemobile|mqqbrowser|juc|fennec|wosbrowser|browserng|webos|symbian|windows phone|micromessenger/gi.test(
+                    ua
+                )
+                    ? true
+                    : false;
+        return isMatchMob;
+    })(window)
+);
